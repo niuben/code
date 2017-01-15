@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<title>代码片段</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="./static/css/reset.css" />
+<link rel="stylesheet" type="text/css" href="./static/css/default.css" />
+<link rel="stylesheet" type="text/css" href="./static/css/github.css" />
+
+<style type="text/css">
+	html, body {
+		height: 100%;
+	}
+	.catalog {		
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		padding: 10px 25px;
+		width: 120px;
+		height: 100%;
+		border-right: 1px solid #ebf0f1;
+	}
+	.catalog h1 {
+		font-size: 20px;
+	}
+	.catalog ul {
+		margin-top: 20px;
+	}
+
+	.catalog ul li {
+		text-indent: 10px;
+		margin-top: 10px;
+		font-size: 14px;
+		list-style: none;
+		cursor: pointer;		
+	}
+	.catalog ul li.on {
+		font-weight: bold;
+	}
+
+	.container {
+		margin-left: 200px;
+		padding-top: 5px;
+	}
+	textarea {
+		width:  100%;
+		font-size: 14px;
+		height: 100px;
+		margin: 10px auto;
+	}
+	button {
+		padding: 5px 10px;
+	}
+</style>
+<body>
+
+<!-- 目录页 -->
+<div class="catalog">
+	<!-- <h1>css</h2>
+	<ul>
+		<li>简介</li>
+		<li>流式布局</li>		
+	</ul> -->
+</div>
+
+<!-- 文档页 -->
+<div class="container code">
+	
+</div>
+
+<script src="static/jquery.js"></script>
+<script type="text/javascript" src="./static/highlight.pack.js"></script>
+<script type="text/javascript">
+	hljs.initHighlightingOnLoad();	
+</script>
+<script type="text/javascript">
+	//加载左侧菜单
+	var url = "./catalog.json"; 
+	$.get(url, function(msg){
+		
+		if(typeof msg == "string"){
+			msg = JSON.parse(msg);
+		}		
+
+		//显示内容
+		var tpl = "";
+		tpl += "<h1>" + msg.title + "</h1>";
+		tpl += "<ul>";
+		msg.list.map(function(name, index){
+			tpl += "<li>" + name + "</li>";
+		})
+		tpl += "</ul>";
+		$(".catalog").html(tpl);
+
+		//默认显示目录第一个内容
+		$(".catalog ul li").first().addClass("on");
+		var catalog = $(".catalog ul li").first().text();
+		load(catalog);	
+
+		//绑定点击事件
+		$(".catalog ul li").click(function(){
+			
+			$(".catalog ul li").removeClass("on");
+			$(this).addClass("on");
+
+			var catalog = $(this).text();
+			load(catalog);
+		});
+
+	});
+
+	function load(catalog) {		
+		var url = "javascript/" + catalog + ".js";
+		loadScript(url);
+		show(url);
+	}
+
+
+	function show(url){		
+		$.ajax({
+			url: url,			
+			dataType: "script",
+			success: function(msg){					
+				var tpl = "";				
+				var arr = msg.split("/* ---- */");
+				arr.map(function(item, index){
+					if($.trim(item.length) == 0) {
+						return;
+					}
+					if(item.indexOf("function") != -1) {
+						tpl += '<pre><code class="javascript">'+ item +'</code></pre>';
+					}else {
+						tpl += '<div><textarea>' + item +'</textarea><button onclick="parse(this)">执行</button></div>';
+					}					
+				});	
+				$(".code").html(tpl);
+			}
+		});
+	}
+
+	function loadScript(url){
+		var isHave = 0 
+		$("script").each(function(index, scriptEle){
+			var src = scriptEle.src;
+			if(src.indexOf(url) != -1) {
+				isHave = 1;
+				return false;
+			}
+
+		});
+		if(isHave == 1) {
+			return;
+		}
+		$("body").append('<script src="' + url + '"><\/script>');
+	}	
+
+	function parse(ele) {
+		var result = eval($(ele).prev().val());
+		if(typeof result == "object") {
+			result = JSON.stringify(result);
+		}
+		$(ele).parent().append("<p>" + result  +"</p>");
+	}
+
+</script>
+</body>
+</html>
