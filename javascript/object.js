@@ -39,3 +39,36 @@ var test = [{
 }];
 deepSearchObjArr(test, "name", "test");
 /* ---- */
+/*
+*  排序对象数组
+*  objArr: 需要排序的数组
+*  field : 用于排序的字段, 这个字段必须是对象具有的
+*  order : 排序规则；desc/asc
+*/
+function sortObjArr(objArr, field, order){ //排序并设置标题		
+	
+	//排序方法;
+	var sortFuc = function(a, b){
+		if(order == "asc"){
+			return a[field] - b[field];
+		}else {
+			return b[field] - a[field];		
+		}
+	};
+	
+	//排序
+	if(field != undefined && order != undefined){
+		return objArr.sort(sortFuc);
+	}
+
+	return objArr;
+}
+/* ---- */
+var test = [{
+	index: 1
+},{
+	index: 3
+},{
+	index: 2
+}];
+sortObjArr(test, "index", "asc");

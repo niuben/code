@@ -33,12 +33,16 @@
 		list-style: none;
 		cursor: pointer;		
 	}
+	.catalog ul li:hover {
+		text-decoration: underline;
+	}
 	.catalog ul li.on {
 		font-weight: bold;
+		font-size  : 18px;
 	}
 
 	.container {
-		margin-left: 200px;
+		margin-left: 180px;
 		padding-top: 5px;
 	}
 	textarea {
@@ -46,6 +50,7 @@
 		font-size: 14px;
 		height: 100px;
 		margin: 10px auto;
+		border: 1px solid #AAA;
 	}
 	button {
 		padding: 5px 10px;
@@ -110,6 +115,7 @@
 
 	function load(catalog) {		
 		var url = "javascript/" + catalog + ".js";
+		url = url.toLowerCase();
 		loadScript(url);
 		show(url);
 	}
