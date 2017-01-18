@@ -35,3 +35,37 @@ function getElementByClass (classname) {
 }
 /* ---- */
 getElementByClass(".test")
+
+/*
+* 在一个DOM节点之前插入一个节点
+* element     : 需要插入的节点
+* otherElement: 被插入的节点
+*/
+function insertBefore(element, otherElement) {
+
+    var parentNode = otherElement.parentNode;
+    var sonNodes = parentNode.childNodes;
+    var childNodes = [];
+    var newChildNodes = [];
+    for (var i = 0; i < sonNodes.length; i++) {
+        var currentNode = sonNodes[i];
+        if (currentNode.nodeType != 1) {
+            continue;
+        }
+        if (currentNode.parentNode == parentNode) {
+            childNodes.push(currentNode);
+        }
+    }
+    parentNode.innerHTML = "";
+    for (var i = 0; i < childNodes.length; i++) {
+        var currentNode = childNodes[i];
+        if (otherElement == currentNode) {
+            parentNode.appendChild(element);
+        }
+        if (element != currentNode) {
+            parentNode.appendChild(currentNode);
+        }
+    }
+}
+/* --- * /
+
