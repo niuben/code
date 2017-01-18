@@ -71,3 +71,26 @@ function distinct(arr) {
 /* ---- */
 var arr = [2, 3, 4, 2];
 distinct(arr);
+/* ---- */
+/*
+* 数组排序 
+* arr  : 需要排序的数组
+* order: desc/asc
+*/
+function sortArr(arr, order) {
+   
+    var args = arguments;
+    for (n = 0; n < arr.length - 1; n++) {
+        for (m = n + 1; m < arr.length; m++) {
+            if ((order == "desc" && arr[n] < arr[m]) || (order == "asc" && arr[n] > arr[m])) {
+                var changeValue = arr[n];
+                arr[n] = arr[m];
+                arr[m] = changeValue;
+            }
+        }
+    }
+    return arr;
+}
+/* ---- */
+var arr = [2, 3, 5, 7, 9];
+sortArr(arr, "desc");
