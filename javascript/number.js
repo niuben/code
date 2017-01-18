@@ -8,7 +8,7 @@ function isInt(num) {
     }
 }
 /* ---- */
-isInt(num)
+isInt(123);
 
 /* ---- */
 // 判断是否是小数
@@ -20,4 +20,4 @@ function isFloat(num) {
     }
 }
 /* ---- */
-isFloat(num)
+isFloat(12.2);
