@@ -1,6 +1,5 @@
-/* ---- */
 // 模拟jquery $
-function $(id){	        
+function _$(id){	        
 	 var str=id;
       id=id.substr(1,id.length);
 	  if(str.indexOf("#")!=-1){			            
@@ -9,7 +8,7 @@ function $(id){
 	  return  getElementByClass(id);
 }
 /* ---- */
-$("#test");
+_$("#test");
 
 /* ---- */
 // 通过类名获取DOM节点
@@ -67,5 +66,5 @@ function insertBefore(element, otherElement) {
         }
     }
 }
-/* --- * /
+/* ---- */
 

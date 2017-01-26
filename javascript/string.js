@@ -1,28 +1,23 @@
 /*
 * 替换目标字符串
 */
-function replace(str, targetStr, replaceStr) {
-    var Str = this;
-    var targetStr = arguments[0];
-    var replaceStr = arguments[1];
-    var symbol = arguments[2];
-
-    if (!symbol) { symbol = "&" }
+function replace(str, targetStr, replaceStr) {    
+    var symbol = "";    
     var comLength = targetStr.length;
-    var searchArray = Str.split(symbol);
+    var searchArray = str.split(symbol);
     var posNum;
     var posStartNum;
-    Str = "";
+    str = "";
 
     for (i = 0; i < searchArray.length; i++) {
         posNum = searchArray[i].indexOf(targetStr);
         posStartNum = posNum + comLength + 1;
-        if (posNum != -1) { searchArray[i] = searchArray[i].substr(0, posStartNum) + replaceStr; }
-        if (i != 0) { Str += symbol; }
-        Str += searchArray[i];
+        if (posNum != -1) { searchArray[i] = replaceStr; }
+        if (i != 0) { str += symbol; }
+        str += searchArray[i];
     }
 
-    return Str;
+    return str;
 };
 /* ---- */
 replace("abbb", "b", "c");
@@ -83,7 +78,7 @@ function copy(text) {
 
     }
 
-    alert("已复制代码到剪贴板")
+    // alert("已复制代码到剪贴板")
     return false;
 }
 /* ---- */

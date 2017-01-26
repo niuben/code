@@ -21,7 +21,7 @@ function countDown(sec, loopBack, endBack) { //定时器
 /* ---- */
 countDown(10, function(sec){
     console.log(sec);
-}, function(){
+},function(){
     console.log("end");
 });
 

@@ -1,4 +1,3 @@
-/* ---- */
 // 得到页面的高度 
 function getHeight() {
   if (document.documentElement.scrollHeight < document.documentElement.clientHeight) {

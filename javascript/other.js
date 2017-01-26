@@ -1,4 +1,3 @@
-/* ---- */
 //隐藏四位手机号
 function hideTelephone(telephone) {
 		if( !telephone ) {
@@ -12,4 +11,4 @@ function hideTelephone(telephone) {
 		return telephone.substr(0, 4) + "****" + telephone.substr(8, 11);
 }
 /* ---- */
-hideTelephone("13003334444);
+hideTelephone("13003334444");

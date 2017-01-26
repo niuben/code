@@ -132,7 +132,9 @@
 					if($.trim(item.length) == 0) {
 						return;
 					}
-					if(item.indexOf("function") != -1) {
+
+					//根据/* ---- */进行分割，第一个为函数，第二个演示例子；
+					if(index % 2 == 0) {
 						tpl += '<pre><code class="javascript">'+ item +'</code></pre>';
 					}else {
 						tpl += '<div><textarea>' + item +'</textarea><button onclick="parse(this)">执行</button></div>';

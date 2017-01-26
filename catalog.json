@@ -1,9 +1,20 @@
 {
 	"title": "css",
 	"list": [
-		"Object",
-		"Array",
-		"Number",
-		"Screen"
+		"object",
+		"array",
+		"number",
+		"string",
+		"dom",
+		"time",
+		"unit",
+		"json",
+		"other",
+		"regular",
+		"safe",
+		"screen",
+		"table",
+		"browser",
+		"url"
 	]
 }
