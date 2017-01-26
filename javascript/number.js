@@ -1,4 +1,3 @@
-/* ---- */
 // 判断是否是帧数
 function isInt(num) {    
     if (Math.floor(num) == this) {
