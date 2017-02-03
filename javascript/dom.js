@@ -33,8 +33,8 @@ function getElementByClass (classname) {
    return elements;
 }
 /* ---- */
-getElementByClass(".test")
-
+getElementByClass(".test");
+/* ---- */
 /*
 * 在一个DOM节点之前插入一个节点
 * element     : 需要插入的节点
@@ -66,5 +66,3 @@ function insertBefore(element, otherElement) {
         }
     }
 }
-/* ---- */
-
