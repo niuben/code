@@ -43,6 +43,36 @@ module.exports = function(url, callback, errCallback){
     //判断url是字符串还是url
     var urlArr = typeof url == "string" ? [url] : url;
 
+/*
+*  url: [string | array ] 远程第三方js文件地址
+*  callback: [function] 请求成功的回调函数 
+*  errCallback: [function] 可选 请求失败的回调函数
+*/
+
+/*
+*  在数组中查找特定的值；
+*  arr: [arr] 数组
+*  val: 查找值
+*/
+function searchArr(arr, val) {
+    var isHave = 0;
+    for(var i = 0; i < arr.length - 1; i++){
+        if(arr[i] == val){
+            return true;
+        }
+    }
+    return false;
+}
+var loadedNum;
+
+
+module.exports = function(url, callback, errCallback){
+    
+    loadedNum = 0;
+
+    //判断url是字符串还是url
+    var urlArr = typeof url == "string" ? [url] : url;
+
     //判断是否已经加载
     var scriptEles = document.getElementsByTagName("script");
     for(var i = 0; i < scriptEles.length; i++) {
@@ -52,9 +82,11 @@ module.exports = function(url, callback, errCallback){
         }
         var status = scriptEles[i].getAttribute("_status");
         if(status == "loaded"){
-            callback(); 
+            loadedNum++;
+            loadedNum == urlArr.length && callback(); 
         }else if(status == "error"){
-            errCallback && errCallback();
+            loadedNum++;
+            loadedNum == urlArr.length && errCallback && errCallback();
         }
         return;
     }
