@@ -7,10 +7,10 @@ function searchArr(arr, val) {
     var isHave = 0;
     for(var i = 0; i < arr.length - 1; i++){
         if(arr[i] == val){
-            return false;
+            return true;
         }
     }
-    return true;
+    return false;
 }
 /* ---- */
 var arr = [2, 3, 4, 2]
