@@ -1,3 +1,20 @@
+/*
+*  在数组中查找特定的值；
+*  arr: [arr] 数组
+*  val: 查找值
+*/
+function searchArr(arr, val) {
+    var isHave = 0;
+    for(var i = 0; i < arr.length - 1; i++){
+        if(arr[i] == val){
+            return false;
+        }
+    }
+    return true;
+}
+/* ---- */
+var arr = [2, 3, 4, 2]
+searchArr(arr, 2);
 /* 
 *  将指定值放在数组的第一位
 *  arr  : 需要搜索的数组;
