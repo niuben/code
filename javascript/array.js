@@ -15,6 +15,7 @@ function searchArr(arr, val) {
 /* ---- */
 var arr = [2, 3, 4, 2]
 searchArr(arr, 2);
+/* ---- */
 /* 
 *  将指定值放在数组的第一位
 *  arr  : 需要搜索的数组;
