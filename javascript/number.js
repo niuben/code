@@ -20,3 +20,12 @@ function isFloat(num) {
 }
 /* ---- */
 isFloat(12.2);
+
+/* ---- */
+// 设置小数点后尾数
+function isDecimal(floatNum, index) {
+    var num = Math.pow(10, index);
+    return Math.round(floatNum * num) / num;
+}
+/* ---- */
+isDecimal(23.2222, 3);
